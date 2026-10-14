@@ -7,6 +7,8 @@ def memory_mapped_reader(filename):
 
     file_size = os.path.getsize(filename)
     n_values = file_size // np.dtype(dtype).itemsize
+    # np.memmap needs row count so it needs to be estimated
+    # or calculated during mapping
     n_rows = n_values // n_columns
 
     data = np.memmap(
